@@ -1,6 +1,5 @@
 # Functions
 source ~/.shell/functions.sh
-echo $TERM
 # Allow local customizations in the ~/.shell_local_before file
 if [ -f ~/.shell_local_before ]; then
     source ~/.shell_local_before
