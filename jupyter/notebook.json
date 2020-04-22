@@ -1,10 +1,22 @@
 {
   "load_extensions": {
-    "jupyter-vim-binding/vim_binding": true
+    "jupyter-vim-binding/vim_binding": true,
+    "collapsible_headings/main": true
   },
   "CodeCell": {
     "cm_config": {
       "lineNumbers": true
+    }
+  },
+  "keys": {
+    "command": {
+      "unbind": [
+        "r"
+      ],
+      "bind": {
+        "r,a": "jupyter-notebook:run-all-cells-above",
+        "r,r": "jupyter-notebook:run-all-cells"
+      }
     }
   }
 }
