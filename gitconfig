@@ -103,6 +103,8 @@
 
 [user]
 	useConfigOnly = true
+	name = Thomas Capelle
+	email = tcapelle@protonmail.com
 
 [http]
 	cookieFile = ~/.gitcookies

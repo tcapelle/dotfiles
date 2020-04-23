@@ -6,15 +6,14 @@
 - clean: ['~', '~/.config']
 
 - link:
-    ~/.aria2/aria2.conf:
     ~/.bash:
     ~/.bash_profile:
     ~/.bashrc:
     ~/.dotfiles: ''
     ~/.gitconfig:
     ~/.gitignore_global:
-    ~/.gnupg/gpg.conf:
     ~/.inputrc:
+    ~/.pythonrc: 
     ~/.ipython/profile_default/ipython_config.py: ipython/ipython_config.py
     ~/.ipython/profile_default/ipython_kernel_config.py: ipython/ipython_kernel_config.py
     ~/.ipython/profile_default/startup/disable_warnings.py: ipython/disable_warnings.py
@@ -40,8 +39,6 @@
   - git update-submodules
   - >
     git cleanall -f
-    emacs.d/vendor/
-    irssi/scripts/vendor/
     jupyter/nbextensions/
     shell/plugins/
     vim/pack/vendor/start/
