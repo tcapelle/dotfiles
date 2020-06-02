@@ -18,9 +18,6 @@
     ~/.ipython/profile_default/ipython_config.py: ipython/ipython_config.py
     ~/.ipython/profile_default/ipython_kernel_config.py: ipython/ipython_kernel_config.py
     ~/.ipython/profile_default/startup/disable_warnings.py: ipython/disable_warnings.py
-    ~/.jupyter/jupyter_notebook_config.py: jupyter/jupyter_notebook_config.py
-    ~/.jupyter/nbconfig/notebook.json: jupyter/notebook.json
-    ~/.local/share/jupyter/nbextensions: jupyter/nbextensions
     ~/.rtorrent.rc:
     ~/.shell:
     ~/.tmux.conf:
@@ -40,7 +37,6 @@
   - git update-submodules
   - >
     git cleanall -f
-    jupyter/nbextensions/
     shell/plugins/
     vim/pack/vendor/start/
     zsh/plugins/
