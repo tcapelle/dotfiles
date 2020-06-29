@@ -21,6 +21,7 @@
     ~/.rtorrent.rc:
     ~/.shell:
     ~/.tmux.conf:
+    ~/.jupyter:
     ~/.vim:
     ~/.vimrc:
     ~/.zsh:

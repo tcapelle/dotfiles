@@ -1,0 +1,28 @@
+{
+    "shortcuts": [
+        {
+            "command": "notebook:change-cell-to-raw",
+            "keys": [
+                "R"
+            ],
+            "selector": ".jp-Notebook:focus",
+            "disabled": true
+        },
+        {
+            "command": "runmenu:run-all",
+            "keys": [
+                "R",
+                "R"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        {
+            "command": "notebook:run-all-above",
+            "keys": [
+                "R",
+                "A"
+            ],
+            "selector": ".jp-Notebook:focus"
+        },
+        ]
+}
