@@ -83,7 +83,7 @@ PR_ARROW_CHAR=">"
 
 # The arrow in red (for root) or violet (for regular user)
 function PR_ARROW() {
-    echo "%(!.%{$fg[red]%}.%{$fg[violet]%})${PR_ARROW_CHAR}%{$reset_color%}"
+    echo "%(!.%{$fg[red]%}.%{$fg[violet]%})%B${PR_ARROW_CHAR}%{$reset_color%}"
 }
 
 # Set custom rhs prompt
@@ -226,6 +226,7 @@ function tog() {
 }
 
 function PR_EXTRA() {
+    echo "(${CONDA_DEFAULT_ENV})"
     # do nothing by default
 }
 
