@@ -137,3 +137,6 @@ alias peek='tee >(cat 1>&2)'
 
 #conda
 alias ca='conda activate'
+
+#tmux
+alias tmux='tmux -2'
