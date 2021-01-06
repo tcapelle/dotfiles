@@ -140,3 +140,6 @@ alias ca='conda activate'
 
 #tmux
 alias tmux='tmux -2'
+
+## Docker
+alias drun="docker run -ti --rm"
