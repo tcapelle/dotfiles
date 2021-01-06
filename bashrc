@@ -52,4 +52,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export GITHUB_TOKEN="bce4ac70bdef60c8b4b84711cf5f7d17f453ec15"
