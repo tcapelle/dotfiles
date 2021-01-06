@@ -42,6 +42,7 @@ set autoindent
 "---------------------
 " Basic editing config
 "---------------------
+set autoread
 set shortmess+=I " disable startup message
 set nu " number lines
 set rnu " relative line numbering
