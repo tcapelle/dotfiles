@@ -43,6 +43,9 @@ Issues
 tput no value for $term and no -t specified
 
 add 
-```
+
+```bash
 export TERM=xterm
-``` in /etc/profile
+``` 
+
+in /etc/profile
