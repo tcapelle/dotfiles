@@ -69,7 +69,7 @@
 [user]
 	useConfigOnly = true
 	name = Thomas Capelle
-	email = thomas.capelle@steady-sun.com
+	email = tcapelle@pm.me
 
 [http]
 	cookieFile = ~/.gitcookies
@@ -82,3 +82,8 @@
 	path = ~/.gitconfig_local
 [rebase]
 	autoStash = true
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
