@@ -32,4 +32,6 @@ source ~/.bashrc
 echo "Creating a PyTorch Env"
 conda create -n pt "python<3.11"
 conda activate pt
-python -m pip install torch torchvision
+python -m pip install torch torchvision 
+python -m pip install transformers datasets peft bitsandbytes jupyterlab wandb flash_attn
+python -c "import torch; print(torch.cuda.is_available())"
