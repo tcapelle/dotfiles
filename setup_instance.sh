@@ -19,8 +19,8 @@ wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge
 
 ## Install Anaconda
 echo "Installing Anaconda"
-./Miniforge3-Linux-x86_64.sh -b
 chmod +x Miniforge3-Linux-x86_64.sh
+./Miniforge3-Linux-x86_64.sh -b
 source ~/.bashrc
 conda init zsh
 conda init bash
