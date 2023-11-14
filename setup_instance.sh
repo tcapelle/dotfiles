@@ -14,6 +14,7 @@ if [ "$install_dotfiles" = "yes" ]; then
     sh install
 fi
 
+cd
 ## Download Miniforge
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh
 
