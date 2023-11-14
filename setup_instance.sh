@@ -25,6 +25,7 @@ sh Miniforge3-Linux-x86_64.sh -bf
 source ~/.bashrc
 ~/miniforge3/bin/conda init zsh
 ~/miniforge3/bin/conda init bash
+source ~/.bashrc
 
 # Create PyTorch env
 echo "Creating a PyTorch Env"
