@@ -21,10 +21,10 @@ wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge
 ## Install Anaconda
 echo "Installing Anaconda"
 chmod +x Miniforge3-Linux-x86_64.sh
-./Miniforge3-Linux-x86_64.sh -b
+sh Miniforge3-Linux-x86_64.sh -bf
 source ~/.bashrc
-conda init zsh
-conda init bash
+~/miniforge3/bin/conda init zsh
+~/miniforge3/bin/conda init bash
 
 # Create PyTorch env
 echo "Creating a PyTorch Env"
