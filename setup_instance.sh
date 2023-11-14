@@ -32,4 +32,4 @@ source ~/.bashrc
 echo "Creating a PyTorch Env"
 conda create -n pt "python<3.11"
 conda activate pt
-conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+python -m pip install torch torchvision
