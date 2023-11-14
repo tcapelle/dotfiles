@@ -30,6 +30,6 @@ source ~/.bashrc
 
 # Create PyTorch env
 echo "Creating a PyTorch Env"
-conda create -n pt python=3.10
+conda create -n pt "python<3.11"
 conda activate pt
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 jupyterlab -c pytorch -y
+conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
