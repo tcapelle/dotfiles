@@ -1,3 +1,4 @@
+#!/bin/bash
 ## Remove dot files
 rm -rf ~/.jupyter
 rm ~/.zshrc
