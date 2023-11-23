@@ -9,16 +9,28 @@ sudo apt-get update -y
 sudo apt install wget vim tmux zsh -y
 
 ## Paste SSH Key
-echo "Do you want to paste an SSH key?"
-read ssh_key
+echo "Please paste your SSH key (finish by typing ';')"
+
+ssh_key=""
+line=""
+
+while [[ "$line" != ";" ]]; do
+    read line
+    ssh_key+="$line"
+    ssh_key+=$'\n'
+done
+
+# Trimming the ending semicolon and new line from ssh_key
+ssh_key=${ssh_key%;$'\n'}
 
 if [[ -n "$ssh_key" ]]; then
-    echo "$ssh_key" > ~/.ssh/id_cape
+    echo -e "$ssh_key" > ~/.ssh/id_cape
     chmod 600 ~/.ssh/id_cape
-    echo "SSH key has been stored in ~/.ssh/id_cape"
+    echo "SSH key has been stored in ~/.ssh/id_cape with the right permissions."
 else
     echo "No SSH key was provided."
 fi
+
 
 
 ## Install dotfiles
@@ -49,6 +61,7 @@ python -m pip install torch torchvision packaging
 python -m pip install transformers datasets peft bitsandbytes jupyterlab wandb ninja
 
 # Install Flash Attention from tri-dao
+echo "==========================================="
 echo "Do you want to install flash_attn? (yes/no)"
 read install_flash
 if [ "$install_flash" = "yes" ]; then
