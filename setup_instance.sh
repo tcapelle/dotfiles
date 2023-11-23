@@ -9,28 +9,10 @@ sudo apt-get update -y
 sudo apt install wget vim tmux zsh -y
 
 ## Paste SSH Key
-echo "Please paste your SSH key (finish by typing ';')"
+echo "Please paste your SSH key"
 
-ssh_key=""
-line=""
-
-while [[ "$line" != ";" ]]; do
-    read line
-    ssh_key+="$line"
-    ssh_key+=$'\n'
-done
-
-# Trimming the ending semicolon and new line from ssh_key
-ssh_key=${ssh_key%;$'\n'}
-
-if [[ -n "$ssh_key" ]]; then
-    echo -e "$ssh_key" > ~/.ssh/id_cape
-    chmod 600 ~/.ssh/id_cape
-    echo "SSH key has been stored in ~/.ssh/id_cape with the right permissions."
-else
-    echo "No SSH key was provided."
-fi
-
+vim ~/.ssh/id_cape
+chmod 600 ~/.ssh/id_cape
 
 
 ## Install dotfiles
