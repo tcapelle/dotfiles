@@ -68,4 +68,5 @@ if [ "$install_flash" = "yes" ]; then
     echo "This may take 3~5 minutes"
     python -m pip install flash-attn --no-cache --no-build-isolation
 fi
+echo "Checking that everything went well"
 python -c "import torch; print(torch.cuda.is_available())"
