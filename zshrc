@@ -11,6 +11,11 @@ if [ -f ~/.zshrc_local_before ]; then
     source ~/.zshrc_local_before
 fi
 
+# Load Api Keys
+if [ -f ~/.secrets.sh ]; then
+    source ~/.secrets.sh
+fi
+
 # External plugins (initialized before)
 source ~/.zsh/plugins_before.zsh
 
@@ -42,6 +47,17 @@ if [ -f ~/.zshrc_local_after ]; then
     source ~/.zshrc_local_after
 fi
 
+export CLICOLOR=1
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/tcapelle/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tcapelle/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/tcapelle/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tcapelle/google-cloud-sdk/completion.zsh.inc'; fi
+
+if [ -f ~/.tokens ]; then
+    source ~/.tokens
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -58,4 +74,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-export CLICOLOR=1
+if [ "$(arch)" = "arm64" ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
