@@ -35,20 +35,3 @@ source ~/.bashrc
 ~/miniforge3/bin/conda init bash
 source ~/.bashrc
 
-# Create PyTorch env
-echo "Creating a PyTorch Env"
-conda create -n pt "python<3.11"
-conda activate pt
-python -m pip install torch torchvision packaging
-python -m pip install transformers datasets peft bitsandbytes jupyterlab wandb ninja
-
-# Install Flash Attention from tri-dao
-echo "==========================================="
-echo "Do you want to install flash_attn? (yes/no)"
-read install_flash
-if [ "$install_flash" = "yes" ]; then
-    echo "This may take 3~5 minutes"
-    python -m pip install flash-attn --no-cache --no-build-isolation
-fi
-echo "Checking that everything went well"
-python -c "import torch; print(torch.cuda.is_available())"
