@@ -8,12 +8,6 @@ rm ~/.bashrc
 sudo apt-get update -y
 sudo apt install wget vim tmux zsh -y
 
-## Paste SSH Key
-echo "Please paste your SSH key"
-
-vim ~/.ssh/id_cape
-chmod 600 ~/.ssh/id_cape
-
 
 ## Install dotfiles
 echo "Do you want to install Cape's dotfiles? (yes/no)"
@@ -30,8 +24,6 @@ wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge
 echo "Installing Anaconda"
 chmod +x Miniforge3-Linux-x86_64.sh
 sh Miniforge3-Linux-x86_64.sh -bf
-source ~/.bashrc
 ~/miniforge3/bin/conda init zsh
 ~/miniforge3/bin/conda init bash
-source ~/.bashrc
 
