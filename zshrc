@@ -58,3 +58,8 @@ if [ -f '/Users/tcapelle/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 if [ -f ~/.tokens ]; then
     source ~/.tokens
 fi
+
+# Let's load the source ~/base-venv/bin/activate
+if [ -f ~/base-venv/bin/activate ]; then
+    source ~/base-venv/bin/activate
+fi
