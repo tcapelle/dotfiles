@@ -44,7 +44,7 @@
 
 [merge]
 	defaultToUpstream = true
-	tool = vimdiff
+	tool = vscode
 
 [pull]
 	ff = only
@@ -57,7 +57,7 @@
 	default = upstream
 
 [credential]
-	helper = cache --timeout=3600
+	helper = manager
 
 [grep]
 	lineNumber = true
@@ -82,6 +82,8 @@
 	path = ~/.gitconfig_local
 [rebase]
 	autoStash = true
+[branch]
+    autoSetupRebase = always
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
