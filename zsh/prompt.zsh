@@ -86,53 +86,9 @@ function PR_ARROW() {
     echo "%(!.%{$fg[red]%}.%{$fg[violet]%})%B${PR_ARROW_CHAR}%{$reset_color%}"
 }
 
-# Set custom rhs prompt
-# User in red (for root) or violet (for regular user)
-RPR_SHOW_USER=true # Set to false to disable user in rhs prompt
-function RPR_USER() {
-    if [[ "${RPR_SHOW_USER}" == "true" ]]; then
-        echo "%(!.%{$fg[red]%}.%{$fg[violet]%})%B%n%b%{$reset_color%}"
-    fi
-}
-
-function machine_name() {
-    if [[ -f $HOME/.name ]]; then
-        cat $HOME/.name
-    else
-        hostname
-    fi
-}
-
-# Host in a deterministically chosen color
-RPR_SHOW_HOST=true # Set to false to disable host in rhs prompt
-function RPR_HOST() {
-    local colors
-    colors=(cyan green yellow red pink)
-    local index=$(python <<EOF
-import hashlib
-
-hash = int(hashlib.sha1('$(machine_name)'.encode('utf8')).hexdigest(), 16)
-index = hash % ${#colors} + 1
-
-print(index)
-EOF
-    )
-    local color=$colors[index]
-    if [[ "${RPR_SHOW_HOST}" == "true" ]]; then
-        echo "%{$fg[$color]%}$(machine_name)%{$reset_color%}"
-    fi
-}
-
-# ' at ' in orange outputted only if both user and host enabled
-function RPR_AT() {
-    if [[ "${RPR_SHOW_USER}" == "true" ]] && [[ "${RPR_SHOW_HOST}" == "true" ]]; then
-        echo "%{$fg[blue]%} at %{$reset_color%}"
-    fi
-}
-
-# Build the rhs prompt
+# Simplify RPR_INFO to return empty string since we don't want user/host info
 function RPR_INFO() {
-    echo "$(RPR_USER)$(RPR_AT)$(RPR_HOST)"
+    echo ""
 }
 
 # Set RHS prompt for git repositories
@@ -226,7 +182,7 @@ function tog() {
 }
 
 function PR_EXTRA() {
-    echo "(${CONDA_DEFAULT_ENV})"
+    # echo "(${CONDA_DEFAULT_ENV})"
     # do nothing by default
 }
 
