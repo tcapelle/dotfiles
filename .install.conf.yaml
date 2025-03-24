@@ -12,6 +12,7 @@
     ~/.dotfiles: ''
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.hammerspoon:
     ~/.inputrc:
     ~/.pythonrc: 
     ~/.rtorrent.rc:
@@ -27,7 +28,8 @@
   - ~/.rtorrent/session
   - ~/.rtorrent/watch
   - ~/.rtorrent/downloads
-
+  - ~/.hammerspoon
+  
 - shell:
   - git submodule sync --recursive
   # the following have to run after linking ~/.gitconfig
