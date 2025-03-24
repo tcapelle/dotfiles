@@ -33,3 +33,11 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# Wandb
+########################
+#
+#
+# Cape
+cape_dev/
+~/.secrets
