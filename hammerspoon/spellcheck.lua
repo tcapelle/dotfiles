@@ -4,7 +4,10 @@
 local module = {}
 
 -- Replace with your actual Gemini API key
-local apiKey = "AIzaSyCVHPNN5J72jIxu5Z9zBEu0tzpqNM8mPwc"
+local apiKey = "SET YOUR API KEY"
+
+-- Model name for easy modification
+local modelName = "gemini-2.5-flash-lite-preview-06-17"
 
 -- Instruction for the spellcheck model
 local instruction = [[
@@ -34,19 +37,27 @@ Now fix this text:
 ]]
 
 function module.spellcheckText()
-    -- Select all text
-    hs.eventtap.keyStroke({"cmd"}, "a")
-    hs.timer.usleep(5000) -- 5ms delay
-
-    -- Copy selected text
+    -- Store original clipboard content
+    local originalClipboard = hs.pasteboard.getContents()
+    
+    -- Try to copy selected text
     hs.eventtap.keyStroke({"cmd"}, "c")
-    hs.timer.usleep(2000) -- 2ms delay
+    hs.timer.usleep(2000) -- Short delay for the copy operation
+    local newClipboard = hs.pasteboard.getContents()
+    
+    -- Check if the clipboard actually changed (meaning text was selected)
+    local text = nil
+    if newClipboard ~= originalClipboard then
+        text = newClipboard
+    end
 
-    -- Get clipboard content
-    local text = hs.pasteboard.getContents()
-
-    if not text or text == "" then
-        hs.alert.show("No text found in clipboard")
+    -- If no text was actually selected, show an alert and restore clipboard
+    if not text or text == "" or text:match("^%s*$") then
+        -- Restore original clipboard
+        if originalClipboard then
+            hs.pasteboard.setContents(originalClipboard)
+        end
+        hs.alert.show("Please select text first")
         return
     end
 
@@ -73,7 +84,7 @@ function module.spellcheckText()
     }]]
     
     -- Set up the API request
-    local endpoint = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" .. apiKey
+    local endpoint = "https://generativelanguage.googleapis.com/v1beta/models/" .. modelName .. ":generateContent?key=" .. apiKey
     
     -- Record start time with millisecond precision
     local startTime = hs.timer.secondsSinceEpoch()
@@ -122,6 +133,13 @@ function module.spellcheckText()
         -- Paste back into the text field
         hs.timer.usleep(1000) -- 1ms delay
         hs.eventtap.keyStroke({"cmd"}, "v")
+
+        -- Restore original clipboard content
+        hs.timer.doAfter(0.1, function()
+            if originalClipboard then
+                hs.pasteboard.setContents(originalClipboard)
+            end
+        end)
 
         hs.logger.new("Spellcheck", "info"):i("Spellcheck completed in " .. elapsedMs .. " ms")
     end, {
