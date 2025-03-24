@@ -60,6 +60,6 @@ if [ -f ~/.tokens ]; then
 fi
 
 # Let's load the source ~/base-venv/bin/activate
-if [ -f ~/base-venv/bin/activate ]; then
-    source ~/base-venv/bin/activate
+if [ -f ~/base/bin/activate ]; then
+    source ~/base/bin/activate
 fi
