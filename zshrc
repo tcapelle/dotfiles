@@ -58,24 +58,3 @@ if [ -f '/Users/tcapelle/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 if [ -f ~/.tokens ]; then
     source ~/.tokens
 fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/tcapelle/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/tcapelle/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/tcapelle/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/tcapelle/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-if [ "$(arch)" = "arm64" ]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    eval "$(/usr/local/bin/brew shellenv)"
-fi
