@@ -1,0 +1,8 @@
+# Secrets
+hammerspoon/secrets.lua
+
+# macOS
+.DS_Store
+
+# Local overrides
+*.local.json

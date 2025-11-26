@@ -37,3 +37,5 @@ fi
 if [ -f ~/.bashrc_local_after ]; then
     source ~/.bashrc_local_after
 fi
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/tcapelle/.lmstudio/bin"

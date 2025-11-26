@@ -4,10 +4,12 @@
 local module = {}
 
 -- Replace with your actual Gemini API key
-local apiKey = "SET YOUR API KEY"
+local apiKey = GEMINI_API_KEY
+function module.setApiKey(k) apiKey = k or "" end
+
 
 -- Model name for easy modification
-local modelName = "gemini-2.5-flash-lite-preview-06-17"
+local modelName = "gemini-flash-lite-latest"
 
 -- Instruction for the spellcheck model
 local instruction = [[
@@ -140,7 +142,9 @@ function module.spellcheckText()
                 hs.pasteboard.setContents(originalClipboard)
             end
         end)
-
+        hs.logger.new("Spellcheck", "info"):i("Sending request to model: " .. modelName)
+        hs.logger.new("Spellcheck", "info"):i("Payload: " .. escapedTextThe)
+        hs.logger.new("Spellcheck", "info"):i("Response: " .. correctedText)
         hs.logger.new("Spellcheck", "info"):i("Spellcheck completed in " .. elapsedMs .. " ms")
     end, {
         "-s",
