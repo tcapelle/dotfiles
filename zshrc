@@ -64,20 +64,20 @@ elif [ -f ~/base/bin/activate ]; then
     source ~/base/bin/activate
 fi
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/tcapelle/.lmstudio/bin"
+# Tool-specific configurations (conditional)
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/tcapelle/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/tcapelle/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/tcapelle/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/tcapelle/google-cloud-sdk/completion.zsh.inc'; fi
+# LM Studio CLI
+[ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # Google Cloud SDK
-export GOOGLE_CLOUD_REGION="us-central1"
-export GOOGLE_CLOUD_PROJECT_ID="wandb-growth"
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
+    source "$HOME/google-cloud-sdk/path.zsh.inc"
+    source "$HOME/google-cloud-sdk/completion.zsh.inc"
+    export GOOGLE_CLOUD_REGION="us-central1"
+    export GOOGLE_CLOUD_PROJECT_ID="wandb-growth"
+fi
 
-
+# NVM (Node Version Manager)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"

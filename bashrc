@@ -37,5 +37,11 @@ fi
 if [ -f ~/.bashrc_local_after ]; then
     source ~/.bashrc_local_after
 fi
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/tcapelle/.lmstudio/bin"
+
+# Modern CLI tools
+command -v fzf &> /dev/null && eval "$(fzf --bash)"
+command -v zoxide &> /dev/null && eval "$(zoxide init bash)"
+command -v starship &> /dev/null && eval "$(starship init bash)"
+
+# Tool-specific configurations
+[ -d "$HOME/.lmstudio/bin" ] && export PATH="$PATH:$HOME/.lmstudio/bin"

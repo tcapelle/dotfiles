@@ -21,6 +21,14 @@ if command -v bat &> /dev/null; then
     alias catp='bat'  # with pager
 fi
 
+# Neovim as default editor
+if command -v nvim &> /dev/null; then
+    alias vim='nvim'
+    alias vi='nvim'
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+fi
+
 # Aliases to protect against overwriting
 alias cp='cp -i'
 alias mv='mv -i'

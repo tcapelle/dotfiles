@@ -30,12 +30,6 @@ if [[ "$(tput colors)" == "256" ]]; then
     ZSH_HIGHLIGHT_STYLES[assign]=fg=037
 fi
 
-# dircolors
-
-#if [[ "$(tput colors)" == "256" ]]; then
-#    eval $(dircolors =(cat ~/.shell/plugins/dircolors-solarized/dircolors.256dark ~/.shell/dircolors.extra))
-#fi
-
 # Modern CLI tools
 
 # fzf - fuzzy finder (Ctrl-R for history, Ctrl-T for files, Alt-C for cd)
