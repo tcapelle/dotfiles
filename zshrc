@@ -78,9 +78,6 @@ export GOOGLE_CLOUD_REGION="us-central1"
 export GOOGLE_CLOUD_PROJECT_ID="wandb-growth"
 
 
-# Added by Windsurf
-export PATH="/Users/tcapelle/.codeium/windsurf/bin:$PATH"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
