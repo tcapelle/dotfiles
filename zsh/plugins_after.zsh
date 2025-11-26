@@ -48,3 +48,8 @@ fi
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
+
+# uv - fast Python package manager
+if command -v uv &> /dev/null; then
+    eval "$(uv generate-shell-completion zsh)"
+fi

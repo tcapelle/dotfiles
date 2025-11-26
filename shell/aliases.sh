@@ -35,18 +35,13 @@ dfu() {
     )
 }
 
-# Use pip without requiring virtualenv
-syspip() {
-    PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
-
-syspip2() {
-    PIP_REQUIRE_VIRTUALENV="" pip2 "$@"
-}
-
-syspip3() {
-    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-}
+# Python/uv helpers
+if command -v uv &> /dev/null; then
+    # Create and activate venv in one command
+    mkvenv() {
+        uv venv "${1:-.venv}" && source "${1:-.venv}/bin/activate"
+    }
+fi
 
 # cd to git root directory
 alias cdgr='cd "$(git root)"'

@@ -1,2 +1,50 @@
-import rlcompleter, readline
-readline.parse_and_bind('tab:complete')
+# Python REPL startup file
+# Loaded via PYTHONSTARTUP environment variable
+
+import atexit
+import os
+import readline
+import rlcompleter
+
+# Tab completion
+readline.parse_and_bind('tab: complete')
+
+# Persistent history across sessions
+HISTFILE = os.path.expanduser("~/.python_history")
+HISTSIZE = 10000
+
+try:
+    readline.read_history_file(HISTFILE)
+    readline.set_history_length(HISTSIZE)
+except FileNotFoundError:
+    pass
+
+atexit.register(readline.write_history_file, HISTFILE)
+
+# Useful imports available in REPL
+import sys
+import json
+from pathlib import Path
+from datetime import datetime, timedelta
+from pprint import pprint as pp
+
+# Try to import commonly used data science libs (silent fail if not installed)
+try:
+    import numpy as np
+except ImportError:
+    pass
+
+try:
+    import pandas as pd
+except ImportError:
+    pass
+
+# Pretty print dicts/lists by default
+try:
+    from rich import pretty, inspect
+    pretty.install()
+except ImportError:
+    pass
+
+# Clear namespace of imports used only for setup
+del atexit, rlcompleter, HISTFILE, HISTSIZE

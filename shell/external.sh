@@ -1,11 +1,8 @@
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=false
-
-# Cache pip-installed packages to avoid re-downloading
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-
-# Python startup file
+# Python startup file (REPL config with history and imports)
 export PYTHONSTARTUP=$HOME/.pythonrc
+
+# uv - prefer project-local venvs
+export UV_PROJECT_ENVIRONMENT=.venv
 
 # Vagrant
 VAGRANT_DISABLE_VBOXSYMLINKCREATE=1
