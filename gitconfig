@@ -76,6 +76,16 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Solarized (dark)
 
 # Allow local customizations in the .gitconfig_local file
 [include]

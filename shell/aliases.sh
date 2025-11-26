@@ -1,11 +1,25 @@
 # Use colors in coreutils utilities output
-alias ls='ls --color=auto'
 alias grep='grep --color'
 
-# ls aliases
-alias ll='ls -lah'
-alias la='ls -A'
-alias l='ls'
+# Modern ls replacement (eza) or fallback to ls
+if command -v eza &> /dev/null; then
+    alias ls='eza --color=auto --group-directories-first'
+    alias ll='eza -lah --git --icons'
+    alias la='eza -a'
+    alias l='eza'
+    alias tree='eza --tree'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -lah'
+    alias la='ls -A'
+    alias l='ls'
+fi
+
+# bat - better cat with syntax highlighting
+if command -v bat &> /dev/null; then
+    alias cat='bat --paging=never'
+    alias catp='bat'  # with pager
+fi
 
 # Aliases to protect against overwriting
 alias cp='cp -i'

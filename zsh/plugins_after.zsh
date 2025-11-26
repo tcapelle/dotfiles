@@ -35,3 +35,16 @@ fi
 #if [[ "$(tput colors)" == "256" ]]; then
 #    eval $(dircolors =(cat ~/.shell/plugins/dircolors-solarized/dircolors.256dark ~/.shell/dircolors.extra))
 #fi
+
+# Modern CLI tools
+
+# fzf - fuzzy finder (Ctrl-R for history, Ctrl-T for files, Alt-C for cd)
+if command -v fzf &> /dev/null; then
+    source <(fzf --zsh)
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+fi
+
+# zoxide - smarter cd (use 'z' instead of 'cd')
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
