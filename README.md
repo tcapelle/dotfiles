@@ -55,7 +55,7 @@ Pre-configured LSPs: Python (pyright, ruff), TypeScript, Lua, Rust
 
 - **uv** - fast Python package manager (10-100x faster than pip)
 - Enhanced REPL with persistent history and auto-imports
-- `mkvenv` helper - create and activate venv in one command
+- `mkvenv` helper - uses `uv venv` to create and activate venv
 
 ### macOS Only
 
@@ -108,7 +108,7 @@ gr               # git log --graph (one line)
 gra              # git log --graph --all
 
 # Python
-mkvenv [name]    # Create and activate venv (default: .venv)
+mkvenv [name]    # uv venv + activate (default: .venv)
 
 # Editor
 vim, vi          # Aliased to nvim
