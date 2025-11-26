@@ -31,8 +31,12 @@ source ~/.shell/external.sh
 # Aliases
 source ~/.shell/aliases.sh
 
-# Custom prompt
-source ~/.zsh/prompt.zsh
+# Prompt (starship or fallback to custom)
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+else
+    source ~/.zsh/prompt.zsh
+fi
 
 # External plugins (initialized after)
 source ~/.zsh/plugins_after.zsh

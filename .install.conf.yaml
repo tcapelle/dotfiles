@@ -14,7 +14,7 @@
     ~/.gitignore_global:
     ~/.hammerspoon:
     ~/.inputrc:
-    ~/.pythonrc: 
+    ~/.pythonrc:
     ~/.rtorrent.rc:
     ~/.shell:
     ~/.tmux.conf:
@@ -23,6 +23,7 @@
     ~/.vimrc:
     ~/.zsh:
     ~/.zshrc:
+    ~/.config/starship.toml:
 
 - create:
   - ~/.rtorrent/session
