@@ -93,7 +93,7 @@
 [rebase]
 	autoStash = true
 [branch]
-    autoSetupRebase = always
+	autoSetupRebase = always
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
