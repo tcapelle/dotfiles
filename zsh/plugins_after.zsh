@@ -46,4 +46,6 @@ fi
 # uv - fast Python package manager
 if command -v uv &> /dev/null; then
     eval "$(uv generate-shell-completion zsh)"
+    # uvr alias gets .py file completion
+    compdef '_files -g "*.py"' uvr
 fi
