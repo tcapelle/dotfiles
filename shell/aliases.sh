@@ -49,8 +49,8 @@ if command -v uv &> /dev/null; then
     mkvenv() {
         uv venv "${1:-.venv}" && source "${1:-.venv}/bin/activate"
     }
-    # Alias for uv run with file completion (use uvr <tab> for .py files)
-    alias uvr='uv run'
+    # Function for uv run with file completion
+    uvr() { uv run "$@" }
 fi
 
 # cd to git root directory
