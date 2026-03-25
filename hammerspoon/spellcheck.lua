@@ -4,8 +4,7 @@
 local module = {}
 
 -- Replace with your actual Gemini API key
-local apiKey = GEMINI_API_KEY
-function module.setApiKey(k) apiKey = k or "" end
+local apiKey = os.getenv("GEMINI_API_KEY")
 
 
 -- Model name for easy modification
@@ -44,7 +43,7 @@ function module.spellcheckText()
     
     -- Try to copy selected text
     hs.eventtap.keyStroke({"cmd"}, "c")
-    hs.timer.usleep(2000) -- Short delay for the copy operation
+    hs.timer.usleep(100000) -- 100ms delay for the copy operation
     local newClipboard = hs.pasteboard.getContents()
     
     -- Check if the clipboard actually changed (meaning text was selected)
@@ -143,7 +142,7 @@ function module.spellcheckText()
             end
         end)
         hs.logger.new("Spellcheck", "info"):i("Sending request to model: " .. modelName)
-        hs.logger.new("Spellcheck", "info"):i("Payload: " .. escapedTextThe)
+        hs.logger.new("Spellcheck", "info"):i("Payload: " .. escapedText)
         hs.logger.new("Spellcheck", "info"):i("Response: " .. correctedText)
         hs.logger.new("Spellcheck", "info"):i("Spellcheck completed in " .. elapsedMs .. " ms")
     end, {
