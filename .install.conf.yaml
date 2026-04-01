@@ -22,6 +22,7 @@
     ~/.config/starship.toml:
     ~/.config/nvim: nvim
     ~/.config/uv/uv.toml:
+    ~/.npmrc:
 
     # macOS only (will be dangling symlinks on Linux, but harmless)
     ~/.hammerspoon:
