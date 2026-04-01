@@ -162,3 +162,6 @@ alias tmux='tmux -2'
 
 ## Docker
 alias drun="docker run -ti --rm"
+
+## Claude
+alias ccc="claude --dangerously-skip-permissions"

@@ -8,7 +8,7 @@ local module = {}
 
 -- ===== Config =====
 -- Prefer env var to avoid hardcoding keys in dotfiles:
-local apiKey    = GEMINI_API_KEY -- put your key in the env, or set here
+local apiKey    = os.getenv("GEMINI_API_KEY")
 local modelName = "gemini-flash-lite-latest"
 local temperature = 0.2
 local maxTokens   = 8000

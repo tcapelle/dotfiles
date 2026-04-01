@@ -1,14 +1,10 @@
--- Gemini Spellcheck for Hammerspoon
--- Spellcheck selected text using Gemini API
+-- Spellcheck for Hammerspoon using Local Model
 
 local module = {}
 
--- Replace with your actual Gemini API key
-local apiKey = os.getenv("GEMINI_API_KEY")
-
-
--- Model name for easy modification
-local modelName = "gemini-flash-lite-latest"
+-- Replace with your actual model's API key if needed
+local apiKey = LOCAL_MODEL_API_KEY
+function module.setApiKey(k) apiKey = k or "" end
 
 -- Instruction for the spellcheck model
 local instruction = [[
@@ -34,18 +30,18 @@ Output: 'hay un problema con la reservación que hicimos ayer'
 Input: 'avez vous recu le mail que j'ai envoye hieer?'
 Output: 'avez-vous reçu le mail que j'ai envoyé hier ?'
 
-Now fix this text: 
+Now fix this text:
 ]]
 
 function module.spellcheckText()
     -- Store original clipboard content
     local originalClipboard = hs.pasteboard.getContents()
-    
+
     -- Try to copy selected text
     hs.eventtap.keyStroke({"cmd"}, "c")
-    hs.timer.usleep(100000) -- 100ms delay for the copy operation
+    hs.timer.usleep(2000) -- Short delay for the copy operation
     local newClipboard = hs.pasteboard.getContents()
-    
+
     -- Check if the clipboard actually changed (meaning text was selected)
     local text = nil
     if newClipboard ~= originalClipboard then
@@ -65,69 +61,48 @@ function module.spellcheckText()
     -- Escape special characters in the text for JSON
     local escapedText = text:gsub('\\', '\\\\'):gsub('"', '\\"'):gsub('\n', '\\n')
     local escapedInstruction = instruction:gsub('\\', '\\\\'):gsub('"', '\\"'):gsub('\n', '\\n')
-    
+
     -- Create the request payload
     local payload = [[{
-        "contents": [
-            {
-                "role": "user",
-                "parts": [
-                    {
-                        "text": "]] .. escapedInstruction .. escapedText .. [[\n\nReturn only fixed text."
-                    }
-                ]
-            }
-        ],
-        "generationConfig": {
-            "temperature": 0.2,
-            "maxOutputTokens": 8192
-        }
+        "prompt": "]] .. escapedInstruction .. escapedText .. [[\n\nReturn only fixed text."
     }]]
-    
-    -- Set up the API request
-    local endpoint = "https://generativelanguage.googleapis.com/v1beta/models/" .. modelName .. ":generateContent?key=" .. apiKey
-    
+
+    -- Set up the API request to your local model
+    local endpoint = "http://localhost:8000/v1/completions"
+
     -- Record start time with millisecond precision
     local startTime = hs.timer.secondsSinceEpoch()
-    
+
     -- Create curl command
     local task = hs.task.new("/usr/bin/curl", function(exitCode, stdOut, stdErr)
         -- Calculate elapsed time in milliseconds
         local elapsedTime = hs.timer.secondsSinceEpoch() - startTime
         local elapsedMs = math.floor(elapsedTime * 1000)
-        
+
         if exitCode ~= 0 then
             hs.alert.show("API request failed: " .. (stdErr or "Unknown error"))
             return
         end
-        
+
         -- Parse the JSON response
         local success, response = pcall(function() return hs.json.decode(stdOut) end)
-        
+
         if not success or not response then
             hs.alert.show("Failed to parse API response")
             return
         end
-        
-        -- Check for errors in the response
-        if response.error then
-            hs.alert.show("API error: " .. (response.error.message or "Unknown API error"))
-            return
-        end
-        
+
         -- Extract corrected text
         local correctedText = nil
-        if response.candidates and response.candidates[1] and 
-           response.candidates[1].content and response.candidates[1].content.parts and 
-           response.candidates[1].content.parts[1] then
-            correctedText = response.candidates[1].content.parts[1].text
+        if response.choices and response.choices[1] and response.choices[1].text then
+            correctedText = response.choices[1].text
         end
-        
+
         if not correctedText then
             hs.alert.show("Could not extract corrected text from response")
             return
         end
-        
+
         -- Copy corrected text to clipboard
         hs.pasteboard.setContents(correctedText)
 
@@ -141,7 +116,8 @@ function module.spellcheckText()
                 hs.pasteboard.setContents(originalClipboard)
             end
         end)
-        hs.logger.new("Spellcheck", "info"):i("Sending request to model: " .. modelName)
+
+        hs.logger.new("Spellcheck", "info"):i("Sending request to model: localhost:8000")
         hs.logger.new("Spellcheck", "info"):i("Payload: " .. escapedText)
         hs.logger.new("Spellcheck", "info"):i("Response: " .. correctedText)
         hs.logger.new("Spellcheck", "info"):i("Spellcheck completed in " .. elapsedMs .. " ms")
@@ -157,7 +133,7 @@ function module.spellcheckText()
 end
 
 -- Set up the hotkey (Cmd+;)
-local hotkey = hs.hotkey.bind({"cmd"}, ";", module.spellcheckText)
+local hotkey = hs.hotkey.bind({"cmd"}, "'", module.spellcheckText)
 
 -- Return the module
 return module
