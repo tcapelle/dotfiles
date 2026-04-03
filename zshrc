@@ -57,11 +57,9 @@ if [ -f ~/.tokens ]; then
     source ~/.tokens
 fi
 
-# Load virtual environment - try local .venv first, fallback to base
+# Load local virtual environment if present
 if [ -f ./.venv/bin/activate ]; then
     source ./.venv/bin/activate
-elif [ -f ~/base/bin/activate ]; then
-    source ~/base/bin/activate
 fi
 
 # Tool-specific configurations (conditional)
